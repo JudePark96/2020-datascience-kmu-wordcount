@@ -1,11 +1,6 @@
 import sys
 
-def test():
-    for line in sys.stdin():
-        yield line.read()
+def read():
+    for line in sys.stdin:
+        yield line
 
-
-a = test()
-
-for i in a:
-    print(i)
