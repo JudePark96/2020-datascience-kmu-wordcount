@@ -21,7 +21,7 @@ plt.xlabel('log(rank)')
 plt.ylabel('log(freq)')
 plt.yscale('log')
 plt.xscale('log')
-plt.savefig('./result.png')
+plt.savefig('./h01_박은환_20163108.png')
 # plt.show() 서버에서 돌리면 안됨.
 
 # $$ n = ck^{-s} $$
