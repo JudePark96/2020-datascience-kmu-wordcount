@@ -31,9 +31,9 @@ for idx, line in enumerate(sys.stdin):
         else:
             vocab[word] = 1
 
-    if idx % 100000 == 0:
-        logger.info(f'loop index: {idx}')
-        logger.info(f'vocabulary size: {len(vocab)}')
+    # if idx % 100000 == 0:
+    #     logger.info(f'loop index: {idx}')
+    #     logger.info(f'vocabulary size: {len(vocab)}')
 
 k = 1000
 top_k = sorted(vocab, key=vocab.get, reverse=True)[:k]
