@@ -10,7 +10,8 @@ import math
 import sys
 
 
-freqs = [int(line.split('\t')[1].strip()) for line in sys.stdin]
+#freqs = [int(line.split('\t')[1].strip()) for line in sys.stdin]
+freqs = list(map(lambda x: int(x.split('\t')[1].strip()), sys.stdin))
 n = 1000
 ranks = range(1, n+1)
 
