@@ -8,10 +8,12 @@ __repository__ = 'https://github.com/JudePark96/2020-datascience-kmu-wordcount'
 import matplotlib.pyplot as plt
 import math
 import sys
-
+import numpy as np
 
 #freqs = [int(line.split('\t')[1].strip()) for line in sys.stdin]
 freqs = list(map(lambda x: int(x.split('\t')[1].strip()), sys.stdin))
+
+
 n = 1000
 ranks = range(1, n+1)
 
@@ -22,27 +24,31 @@ plt.ylabel('log(freq)')
 plt.yscale('log')
 plt.xscale('log')
 plt.savefig('./h01_박은환_20163108.png')
+
+
+freqs = np.log(freqs)
+ranks = np.log([i for i in ranks])
+
+del_x = ranks[-1] - ranks[0]
+del_y = freqs[-1] - freqs[0]
+
+s = (del_y / del_x) * -1
+c = np.exp(freqs + s * ranks)
+
+sum_c = 0
+
+for i in range(1, 1000):
+    sum_c += c[i]
+
+aprox_c = sum_c / 1000
+
+print(f"s: {s}")
+print(f"c: {aprox_c}")
+
+
+
 # plt.show() 서버에서 돌리면 안됨.
+
 
 # $$ n = ck^{-s} $$
 # y = freq, x = rank
-# log 를 취함.
-ys, xs = list(map(math.log, freqs)), list(map(math.log, ranks))
-sxy, sx, sy = 0, 0, 0
-
-length = len(xs)
-ex = sum(xs) / length
-ey = sum(ys) / length
-for x, y in zip(xs, ys):
-    nx = x - ex
-    ny = y - ey
-    sxy += nx * ny
-    sx += nx * nx
-    sy += ny * ny
-
-s = sxy / sx
-c = ey + s * ex
-
-
-print('c = {}'.format(c))
-print('s = {}'.format(s))
